@@ -15,10 +15,13 @@ export default class TopicItem extends Component {
     const { topic, onIncrease, onDecrease } = this.props
     return (
       <div className={css.item}>
-        <h5>{topic.title}</h5>
+        <h5 className={css.title}>{topic.title}</h5>
         <Control currentValue={topic.current} onIncrease={onIncrease} onDecrease={onDecrease} />
-        <div className="progress">
-          <div className="progress-bar" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <div className={css.progressContainer}>
+          <div className="progress">
+            <div className="progress-bar" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <h5 className={css.percent}>25%</h5>
+          </div>
         </div>
       </div>
     )
