@@ -13,12 +13,14 @@ export default class App extends Component {
           title: 'Essential grammar in Use',
           start: 0,
           finish: 209,
+          current: 68,
           categoryId: 1
         },
         {
           id: 2,
           title: 'New English File pre-intermediate',
           start: 0,
+          current: 12,
           finish: 104,
           categoryId: 1
         }
