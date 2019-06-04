@@ -37,13 +37,43 @@ export default class App extends Component {
       ]
     }
   }
+
+  onIncrease = (topicId) => {
+    const topics = this.state.topics.map(topic =>
+      (topic.id === topicId)
+        ? {
+          ...topic,
+          current: topic.current + 1
+        }
+        : topic
+    )
+    this.setState({ topics })
+  }
+
+  onDecrease = (topicId) => {
+    const topics = this.state.topics.map(topic =>
+      (topic.id === topicId)
+        ? {
+          ...topic,
+          current: topic.current - 1
+        }
+        : topic
+    )
+    this.setState({ topics })
+  }
+
   render () {
     const { topics, categories } = this.state
     return (
       <div>
         <Header />
         {categories.map((category, i) =>
-          <CategoryItem topics={topics} category={category} key={i} />
+          <CategoryItem
+            key={i}
+            topics={topics}
+            category={category}
+            onIncrease={this.onIncrease}
+            onDecrease={this.onDecrease} />
         )}
       </div>
     )
