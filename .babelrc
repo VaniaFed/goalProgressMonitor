@@ -1,0 +1,25 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "styled-jsx/babel",
+    "@babel/plugin-proposal-class-properties"
+  ],
+  "env": {
+    "server": {
+      "plugins": [
+        [
+          "css-modules-transform",
+          {
+            "generateScopedName": "[hash:8]",
+            "extensions": [
+              ".css", ".sass"
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}
