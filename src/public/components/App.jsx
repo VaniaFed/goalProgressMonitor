@@ -79,3 +79,11 @@ export default class App extends Component {
     )
   }
 }
+
+// TODO:
+/*
+  1. вывод топиков по категориям
+  2. изменение progress bar при изменении значений
+  3. прикрутить Redux
+  4. Прикрутить сервер
+*/
