@@ -71,9 +71,16 @@ export default class App extends Component {
     this.setState({ topics })
   }
 
+  calcPercent = topic => {
+    const { start, finish, current } = topic
+    const percent = 100 / (finish - start) * current
+    return percent
+  }
+
   render () {
     const { topics, categories } = this.state
     const { onIncrease, onDecrease } = this
+    console.log(this.calcPercent(topics[1]))
     return (
       <div>
         <Header />
