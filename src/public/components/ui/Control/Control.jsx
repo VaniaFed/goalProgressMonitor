@@ -5,7 +5,7 @@ const Control = ({ currentValue, onIncrease, onDecrease }) => {
   return (
     <div className={css.control}>
       <button className="btn btn-light" onClick={onIncrease}>+</button>
-      <input className={css.inputValue} type="number" value={currentValue} defaultValue={currentValue} />
+      <input className={css.inputValue} type="number" value={currentValue} />
       <button className="btn btn-light" onClick={onDecrease}>-</button>
     </div>
   )
