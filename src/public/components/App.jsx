@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Header from './ui/Header/Header'
 import CategoryItem from './ui/CategoryItem'
+import Categories from './container/Categories';
 
 export default class App extends Component {
   constructor (props) {
@@ -23,6 +24,14 @@ export default class App extends Component {
           current: 12,
           finish: 104,
           categoryId: 1
+        },
+        {
+          id: 3,
+          title: 'Complete code',
+          start: 0,
+          current: 300,
+          finish: 690,
+          categoryId: 2
         }
       ],
       categories: [
@@ -64,17 +73,15 @@ export default class App extends Component {
 
   render () {
     const { topics, categories } = this.state
+    const { onIncrease, onDecrease } = this
     return (
       <div>
         <Header />
-        {categories.map((category, i) =>
-          <CategoryItem
-            key={i}
-            topics={topics}
-            category={category}
-            onIncrease={this.onIncrease}
-            onDecrease={this.onDecrease} />
-        )}
+        <Categories
+          topics={topics}
+          categories={categories}
+          onIncrease={onIncrease}
+          onDecrease={onDecrease} />
       </div>
     )
   }
@@ -82,8 +89,8 @@ export default class App extends Component {
 
 // TODO:
 /*
-  1. вывод топиков по категориям
   2. изменение progress bar при изменении значений
+    значение для прогресс бар будет высчитываться при mount и изменении значения current
   3. прикрутить Redux
   4. Прикрутить сервер
 */
