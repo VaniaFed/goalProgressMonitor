@@ -71,16 +71,9 @@ export default class App extends Component {
     this.setState({ topics })
   }
 
-  calcPercent = topic => {
-    const { start, finish, current } = topic
-    const percent = 100 / (finish - start) * current
-    return percent
-  }
-
   render () {
     const { topics, categories } = this.state
     const { onIncrease, onDecrease } = this
-    console.log(this.calcPercent(topics[1]))
     return (
       <div>
         <Header />
@@ -96,8 +89,8 @@ export default class App extends Component {
 
 // TODO:
 /*
-  2. изменение progress bar при изменении значений
-    значение для прогресс бар будет высчитываться при mount и изменении значения current
+  1. Добавить форму добавления айтемов
+  2. Добавить форму изменения айтемов
   3. прикрутить Redux
   4. Прикрутить сервер
 */
