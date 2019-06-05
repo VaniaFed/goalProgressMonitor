@@ -7,8 +7,6 @@ const Categories = ({ topics, categories, onIncrease, onDecrease }) => {
     <div>
       {categories.map((category, i) => {
         const currentTopics = topics.filter(topic => topic.categoryId === category.id);
-        console.log(category.title)
-        console.log('current topics: ', currentTopics);
         return <CategoryItem
           key={i}
           topics={currentTopics}
