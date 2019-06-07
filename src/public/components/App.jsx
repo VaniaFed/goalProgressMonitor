@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
-
-import Header from './ui/Header/Header'
-import CategoryItem from './ui/CategoryItem'
+import React, { Component } from 'react';
+import Header from './ui/Header';
 import Categories from './container/Categories';
 
 export default class App extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       topics: [
         {
@@ -15,7 +13,7 @@ export default class App extends Component {
           start: 0,
           finish: 209,
           current: 68,
-          categoryId: 1
+          categoryId: 1,
         },
         {
           id: 2,
@@ -23,7 +21,7 @@ export default class App extends Component {
           start: 0,
           current: 12,
           finish: 104,
-          categoryId: 1
+          categoryId: 1,
         },
         {
           id: 3,
@@ -31,49 +29,57 @@ export default class App extends Component {
           start: 0,
           current: 300,
           finish: 690,
-          categoryId: 2
-        }
+          categoryId: 2,
+        },
       ],
       categories: [
         {
           id: 1,
-          title: 'English'
+          title: 'English',
         },
         {
           id: 2,
-          title: 'Software Engineering'
-        }
-      ]
-    }
+          title: 'Software Engineering',
+        },
+      ],
+    };
+
+    this.onIncrease = this.onIncrease.bind(this);
+    this.onDecrease = this.onDecrease.bind(this);
   }
 
-  onIncrease = (topicId) => {
-    const topics = this.state.topics.map(topic =>
-      (topic.id === topicId)
-        ? {
+  onIncrease(topicId) {
+    let { topics } = this.state;
+    topics = topics.map((topic) => {
+      if (topic.id === topicId) {
+        return ({
           ...topic,
-          current: topic.current + 1
-        }
-        : topic
-    )
-    this.setState({ topics })
+          current: topic.current + 1,
+        });
+      }
+
+      return topic;
+    });
+    this.setState({ topics });
   }
 
-  onDecrease = (topicId) => {
-    const topics = this.state.topics.map(topic =>
-      (topic.id === topicId)
-        ? {
+  onDecrease(topicId) {
+    let { topics } = this.state;
+    topics = topics.map((topic) => {
+      if (topic.id === topicId) {
+        return ({
           ...topic,
-          current: topic.current - 1
-        }
-        : topic
-    )
-    this.setState({ topics })
+          current: topic.current - 1,
+        });
+      }
+      return topic;
+    });
+    this.setState({ topics });
   }
 
-  render () {
-    const { topics, categories } = this.state
-    const { onIncrease, onDecrease } = this
+  render() {
+    const { topics, categories } = this.state;
+    const { onIncrease, onDecrease } = this;
     return (
       <div>
         <Header />
@@ -81,9 +87,10 @@ export default class App extends Component {
           topics={topics}
           categories={categories}
           onIncrease={onIncrease}
-          onDecrease={onDecrease} />
+          onDecrease={onDecrease}
+        />
       </div>
-    )
+    );
   }
 }
 

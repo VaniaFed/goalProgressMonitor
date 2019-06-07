@@ -12,7 +12,7 @@ const images = require('./webpack/images')
 
 module.exports = {
   entry: {
-    index: './src/public/index.js'
+    index: './src/public/index.jsx'
   },
   output: {
     path: path.resolve(__dirname, 'dist/client'),

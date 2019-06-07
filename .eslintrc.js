@@ -1,37 +1,29 @@
 module.exports = {
-  'parser': 'babel-eslint',
-  'parserOptions': {
-    'ecmaVersion': 6,
-    'sourceType': 'module',
-    'ecmaFeatures': {
-      'jsx': true
-    }
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
   },
-  'env': {
-    'browser': true,
-    'es6': true,
-    'node': true
+  extends: 'airbnb',
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
   },
-  'extends': ['standard', 'standard-react'],
-  'globals': {
-    'Atomics': 'readonly',
-    'SharedArrayBuffer': 'readonly'
-  },
-  'parserOptions': {
-    'ecmaFeatures': {
-      'jsx': true
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-    'ecmaVersion': 2018,
-    'sourceType': 'module'
+    ecmaVersion: 2018,
+    sourceType: 'module',
   },
-  'plugins': [
-    'react'
+  plugins: [
+    'react',
+    'react-hooks'
   ],
-  'rules': {
-    "react/prop-types": 1,
-    "import/no-webpack-loader-syntax": 0,
-    'no-unused-vars': 1,
-    'react/self-closing-comp': 0,
-    'jsx-quotes': ['error', 'prefer-double']
-  }
-}
+  rules: {
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/destructuring-assignment': 'warn',
+    'react/forbid-prop-types': 0
+  },
+};
