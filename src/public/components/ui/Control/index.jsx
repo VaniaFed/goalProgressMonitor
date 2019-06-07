@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import css from './control.module.sass';
 
 const Control = ({ currentValue, onIncrease, onDecrease }) => (

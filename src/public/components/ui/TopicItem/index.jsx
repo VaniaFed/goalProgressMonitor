@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import Control from '../Control';
 import { calcPercent } from '../../../libs/functions';
 import css from './topicItem.module.sass';

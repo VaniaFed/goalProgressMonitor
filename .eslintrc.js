@@ -1,4 +1,5 @@
 module.exports = {
+  parser: 'babel-eslint',
   env: {
     browser: true,
     es6: true,
@@ -12,6 +13,7 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
+      legacyDecorators: true,
     },
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -25,6 +27,8 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/destructuring-assignment': 'warn',
-    'react/forbid-prop-types': 0
+    'react/forbid-prop-types': 0,
+    'template-curly-spacing' : "off",
+    'indent' : "off"
   },
 };

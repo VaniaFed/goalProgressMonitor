@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import TopicItem from '../TopicItem';
 import css from './categoryItem.module.sass';
 

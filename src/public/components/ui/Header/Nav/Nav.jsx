@@ -1,4 +1,5 @@
 import React from 'react';
+
 import css from './nav.module.sass';
 
 const Nav = () => (
