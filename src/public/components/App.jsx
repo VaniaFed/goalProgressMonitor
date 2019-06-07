@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './ui/Header';
 import Categories from './container/Categories';
+import ModalCreateCategory from './ui/Modal/ModalCreateCategory';
 
 export default class App extends Component {
   constructor(props) {
@@ -42,13 +43,17 @@ export default class App extends Component {
           title: 'Software Engineering',
         },
       ],
+      displayModalCreateCategory: false,
+      displayModalCreateTopic: false,
+      displayModalControlTopic: false,
     };
 
-    this.onIncrease = this.onIncrease.bind(this);
-    this.onDecrease = this.onDecrease.bind(this);
+    this.increase = this.increase.bind(this);
+    this.decrease = this.decrease.bind(this);
+    this.showModalCreateCategory = this.showModalCreateCategory.bind(this);
   }
 
-  onIncrease(topicId) {
+  increase(topicId) {
     let { topics } = this.state;
     topics = topics.map((topic) => {
       if (topic.id === topicId) {
@@ -63,7 +68,7 @@ export default class App extends Component {
     this.setState({ topics });
   }
 
-  onDecrease(topicId) {
+  decrease(topicId) {
     let { topics } = this.state;
     topics = topics.map((topic) => {
       if (topic.id === topicId) {
@@ -77,17 +82,36 @@ export default class App extends Component {
     this.setState({ topics });
   }
 
+  showModalCreateCategory() {
+    this.setState({ displayModalCreateCategory: true });
+  }
+  // addCategory() {
+  //   console.log(this);
+  // }
+
   render() {
-    const { topics, categories } = this.state;
-    const { onIncrease, onDecrease } = this;
+    const { topics, categories, displayModalCreateCategory } = this.state;
+    const {
+      increase,
+      decrease,
+      addCategory,
+      addTopic,
+      showModalCreateCategory,
+    } = this;
     return (
       <div>
         <Header />
+        <button type="button" onClick={showModalCreateCategory} className="buttonDefault">Add category</button>
+        <button type="button" onClick={addTopic} className="buttonDefault">Add topic</button>
+        {(displayModalCreateCategory) && (
+          <ModalCreateCategory />
+        )
+        }
         <Categories
           topics={topics}
           categories={categories}
-          onIncrease={onIncrease}
-          onDecrease={onDecrease}
+          onIncrease={increase}
+          onDecrease={decrease}
         />
       </div>
     );
