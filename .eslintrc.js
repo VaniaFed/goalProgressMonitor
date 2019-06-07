@@ -17,6 +17,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
+    'flowtype',
     'react',
     'react-hooks'
   ],
