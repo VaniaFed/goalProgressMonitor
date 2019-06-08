@@ -25,6 +25,7 @@ class App extends Component {
 
   showModalCreateCategory() {
     this.setState({ displayModalCreateCategory: true });
+    console.log(this.state)
   }
 
   render() {
@@ -34,7 +35,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <ControlButtons />
+        <ControlButtons showModalCreateCategory={showModalCreateCategory} />
         {(displayModalCreateCategory) && (
           <ModalCreateCategory />
         )}
