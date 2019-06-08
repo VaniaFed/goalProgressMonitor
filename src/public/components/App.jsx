@@ -13,7 +13,7 @@ class App extends Component {
     const { store } = props;
     store.addCategory('English');
     store.addCategory('Software engineering');
-    store.addTopic('Software engineering', store.categories[0].id, 0, 100, 50);
+    store.addTopic('New English File Intermediate', store.categories[0].id, 0, 100, 50);
     this.state = {
       displayModalCreateCategory: false,
       displayModalCreateTopic: false,
