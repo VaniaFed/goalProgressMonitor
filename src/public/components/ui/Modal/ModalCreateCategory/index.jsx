@@ -8,20 +8,32 @@ export default class ModalCreateCategory extends Component {
     this.state = {
       isError: false,
       errorText: '',
-    }
+    };
+    this.inputCategoryName = React.createRef();
   }
 
   render() {
+    const { onCreate, onClose } = this.props;
     return (
-      <ModalContainer>
+      <ModalContainer onClose={onClose}>
         <h1 className="title1">Create category</h1>
         <div className="form-group">
           <label className={css.label}>
             Category name
-            <input type="text" className={`${css.inputText} form-control`} />
+            <input
+              type="text"
+              ref={(ref) => { this.inputCategoryName = ref; }}
+              className={`${css.inputText} form-control`}
+            />
           </label>
         </div>
-        <button className="defaultButton btn btn-primary">Create</button>
+        <button
+          onClick={() => { onCreate(this.inputCategoryName.value); onClose(); }}
+          className="defaultButton btn btn-primary"
+          type="button"
+        >
+          Create
+        </button>
       </ModalContainer>
     );
   }

@@ -20,24 +20,31 @@ class App extends Component {
       displayModalControlTopic: false,
     };
 
-    this.showModalCreateCategory = this.showModalCreateCategory.bind(this);
+    this.toggleDisplayModalCreateCategory = this.toggleDisplayModalCreateCategory.bind(this);
+    this.createCategory = this.createCategory.bind(this);
   }
 
-  showModalCreateCategory() {
-    this.setState({ displayModalCreateCategory: true });
-    console.log(this.state)
+  toggleDisplayModalCreateCategory() {
+    const { displayModalCreateCategory } = this.state;
+    this.setState({ displayModalCreateCategory: !displayModalCreateCategory });
+    console.log('called');
+  }
+
+  createCategory(categoryName) {
+    const { store } = this.props;
+    store.addCategory(categoryName);
   }
 
   render() {
     const { displayModalCreateCategory } = this.state;
-    const { showModalCreateCategory } = this;
+    const { toggleDisplayModalCreateCategory, createCategory } = this;
     const { categories, topics } = this.props.store;
     return (
       <div>
         <Header />
-        <ControlButtons showModalCreateCategory={showModalCreateCategory} />
+        <ControlButtons showModalCreateCategory={toggleDisplayModalCreateCategory} />
         {(displayModalCreateCategory) && (
-          <ModalCreateCategory />
+          <ModalCreateCategory onCreate={createCategory} onClose={toggleDisplayModalCreateCategory} />
         )}
         <Categories
           topics={topics}

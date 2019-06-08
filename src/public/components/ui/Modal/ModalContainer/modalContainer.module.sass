@@ -4,5 +4,24 @@
   max-width: 100%
   margin: 0 auto
   padding: 40px
-  position: relative
   z-index: 20
+  position: absolute
+  left: 0
+  right: 0
+  top: 50%
+  transform: translateY(-50%)
+
+.close
+  border: none
+  outline: none
+  background: none
+  position: absolute
+  right: 40px
+  top: 40px
+  &:focus
+    outline: none
+    border: none
+  &:hover svg
+    transition: all .5s
+    transform-origin: center center
+    transform: rotate(90deg)
