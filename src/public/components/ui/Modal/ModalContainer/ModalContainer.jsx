@@ -4,11 +4,12 @@ import DarkBackground from '../DarkBackground/DarkBackground';
 import css from './modalContainer.module.sass';
 
 const ModalContainer = ({ children }) => (
-  <DarkBackground>
+  <div>
+    <DarkBackground />
     <div className={css.container}>
       {children}
     </div>
-  </DarkBackground>
+  </div>
 );
 
 export default ModalContainer;
