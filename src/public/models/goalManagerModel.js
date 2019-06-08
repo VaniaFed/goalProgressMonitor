@@ -17,13 +17,14 @@ export default class GoalManagerModel {
     });
   }
 
-  @action addTopic(title, categoryId, start, finish) {
+  @action addTopic(title, categoryId, start, finish, current = 0) {
     this.topics.push({
       id: v4(),
       title,
       categoryId,
       start,
       finish,
+      current,
     });
   }
 }

@@ -12,7 +12,7 @@ const CategoryItem = ({
 }) => (
   <div className="container">
     <div className={css.item}>
-      <h2 className={css.title}>{category.title}</h2>
+      <h2 className="title1">{category.title}</h2>
       {topics.map(topic => (
         <TopicItem
           key={topic.id}

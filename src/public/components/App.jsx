@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import Header from './ui/Header';
 import Categories from './container/Categories';
 import ModalCreateCategory from './ui/Modal/ModalCreateCategory';
+import ControlButtons from './ui/ControlButtons';
 
 @observer
 class App extends Component {
@@ -12,7 +13,7 @@ class App extends Component {
     const { store } = props;
     store.addCategory('English');
     store.addCategory('Software engineering');
-    store.addTopic('Software engineering', 'df0c244c-d567-49ce-8035-dab8327d9e40', 0, 100);
+    store.addTopic('Software engineering', store.categories[0].id, 0, 100, 50);
     this.state = {
       displayModalCreateCategory: false,
       displayModalCreateTopic: false,
@@ -29,16 +30,14 @@ class App extends Component {
   render() {
     const { displayModalCreateCategory } = this.state;
     const { showModalCreateCategory } = this;
-    const { categories, topics } = this.props.store
+    const { categories, topics } = this.props.store;
     return (
       <div>
         <Header />
-        <button type="button" onClick={showModalCreateCategory} className="buttonDefault">Add category</button>
-        <button type="button" className="buttonDefault">Add topic</button>
+        <ControlButtons />
         {(displayModalCreateCategory) && (
           <ModalCreateCategory />
-        )
-        }
+        )}
         <Categories
           topics={topics}
           categories={categories}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CategoryItem from '../ui/CategoryItem';
+import Section from '../ui/common/Section/Section';
 
 const Categories = ({
   topics,
@@ -8,7 +9,7 @@ const Categories = ({
   onIncrease,
   onDecrease,
 }) => (
-  <div>
+  <Section>
     {categories.map((category) => {
       const currentTopics = topics.filter(topic => topic.categoryId === category.id);
       return (
@@ -21,7 +22,7 @@ const Categories = ({
         />
       );
     })}
-  </div>
+  </Section>
 );
 
 Categories.defaultProps = {

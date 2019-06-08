@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Control from '../Control';
 import { calcPercent } from '../../../libs/functions';
 import css from './topicItem.module.sass';
 
@@ -16,7 +15,6 @@ export default class TopicItem extends Component {
     return (
       <div className={css.item}>
         <h5 className={css.title}>{topic.title}</h5>
-        <Control currentValue={topic.current} onIncrease={onIncrease} onDecrease={onDecrease} />
         <div className={css.progressContainer}>
           <div className={`progress ${css.progress}`}>
             <div
@@ -27,7 +25,14 @@ export default class TopicItem extends Component {
               aria-valuemin="0"
               aria-valuemax="100"
             />
-            <h5 className={css.percent}>{`${currentPercent}%`}</h5>
+            <div className={css.info}>
+              <h5 className={css.percent}>{`${currentPercent}%`}</h5>
+              <p>
+                {topic.current}
+                /
+                {topic.finish}
+              </p>
+            </div>
           </div>
         </div>
       </div>
