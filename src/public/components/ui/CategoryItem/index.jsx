@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TopicItem from '../TopicItem';
+import Topics from './Topics';
 import css from './categoryItem.module.sass';
 
 const CategoryItem = ({
@@ -13,14 +13,7 @@ const CategoryItem = ({
   <div className="container">
     <div className={css.item}>
       <h2 className="title1">{category.title}</h2>
-      {topics.map(topic => (
-        <TopicItem
-          key={topic.id}
-          topic={topic}
-          onIncrease={() => onIncrease(topic.id)}
-          onDecrease={() => onDecrease(topic.id)}
-        />
-      ))}
+      <Topics topics={topics} onIncrease={onIncrease} onDecrease={onDecrease} />
     </div>
   </div>
 );
