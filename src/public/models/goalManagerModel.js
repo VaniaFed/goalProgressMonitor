@@ -11,6 +11,7 @@ export default class GoalManagerModel {
   }
 
   @action addCategory(title) {
+    console.log(title);
     this.categories.push({
       id: v4(),
       title,
@@ -20,11 +21,26 @@ export default class GoalManagerModel {
   @action addTopic(title, categoryId, start, finish, current = 0) {
     this.topics.push({
       id: v4(),
-      title,
       categoryId,
+      title,
       start,
       finish,
       current,
     });
+  }
+
+  @action changeTopic(topicId, changes) {
+    this.topics = this.topics.map(topic =>
+      (topic.id === topicId)
+        ? ({
+          ...topic,
+          ...changes,
+        })
+      : topic
+    );
+  }
+
+  @action increaseCurrentValue(topicId) {
+    this.topics[0].current += 1;
   }
 }

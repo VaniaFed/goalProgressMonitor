@@ -30,6 +30,8 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'template-curly-spacing' : 'off',
     'indent' : 'off',
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'mouse-events-have-key-events': 'off',
+    'jsx-a11y/mouse-events-have-key-events': 'off'
   },
 };

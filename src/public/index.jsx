@@ -8,6 +8,9 @@ import '../../stylesheet/based.sass';
 
 const store = new GoalManagerModel();
 render(
-  <App store={store} />,
+  <div>
+    <App store={store} />
+  </div>,
   document.querySelector('#app'),
 );
+window.store = store;
