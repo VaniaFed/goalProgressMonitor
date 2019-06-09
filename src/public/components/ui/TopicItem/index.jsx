@@ -27,7 +27,7 @@ export default class TopicItem extends Component {
             />
             <div className={css.info}>
               <h5 className={css.percent}>{`${currentPercent}%`}</h5>
-              <p>
+              <p className={css.ratio}>
                 {topic.current}
                 /
                 {topic.finish}
