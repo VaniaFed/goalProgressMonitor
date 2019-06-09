@@ -27,8 +27,20 @@ export default class ModalCreateCategory extends Component {
             />
           </label>
         </div>
+        <p className={css.errorText}>{this.state.errorText}</p>
         <button
-          onClick={() => { onCreate(this.inputCategoryName.value); onClose(); }}
+          onClick={() => {
+            if (
+              typeof this.inputCategoryName.value === 'string'
+              && this.inputCategoryName.value
+              && isNaN(+this.inputCategoryName.value)
+            ) {
+              onCreate(this.inputCategoryName.value);
+              onClose();
+            } else {
+              this.setState({ error: true, errorText: 'There\'re some errors.'})
+            }
+          }}
           className="defaultButton btn btn-primary"
           type="button"
         >
