@@ -28,7 +28,8 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/destructuring-assignment': 'warn',
     'react/forbid-prop-types': 0,
-    'template-curly-spacing' : "off",
-    'indent' : "off"
+    'template-curly-spacing' : 'off',
+    'indent' : 'off',
+    'react/prop-types': 'off'
   },
 };
