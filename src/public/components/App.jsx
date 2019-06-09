@@ -35,7 +35,6 @@ class App extends Component {
   toggleDisplayModalCreateTopic() {
     const { displayModalCreateTopic } = this.state;
     this.setState({ displayModalCreateTopic: !displayModalCreateTopic });
-    console.log('called');
   }
 
   createCategory(categoryName) {
@@ -43,9 +42,10 @@ class App extends Component {
     store.addCategory(categoryName);
   }
 
-  createTopic(topicName) {
+  createTopic(topicName, categoryId, start, finish, current = 0) {
+    console.log(topicName);
     const { store } = this.props;
-    store.addTopic(topicName);
+    store.addTopic(topicName, categoryId, start, finish, current);
   }
 
   render() {
@@ -68,7 +68,7 @@ class App extends Component {
           <ModalCreateCategory onCreate={createCategory} onClose={toggleDisplayModalCreateCategory} />
         )}
         {(displayModalCreateTopic) && (
-          <ModalCreateTopic onCreate={createTopic} onClose={toggleDisplayModalCreateTopic} />
+          <ModalCreateTopic categories={categories} onCreate={createTopic} onClose={toggleDisplayModalCreateTopic} />
         )}
         <Categories
           topics={topics}
