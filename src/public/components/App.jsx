@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import Header from './ui/Header';
 import Categories from './container/Categories';
 import ModalCreateCategory from './ui/Modal/ModalCreateCategory';
+import ModalCreateTopic from './ui/Modal/ModalCreateTopic';
 import ControlButtons from './ui/ControlButtons';
 
 @observer
@@ -21,12 +22,19 @@ class App extends Component {
     };
 
     this.toggleDisplayModalCreateCategory = this.toggleDisplayModalCreateCategory.bind(this);
+    this.toggleDisplayModalCreateTopic = this.toggleDisplayModalCreateTopic.bind(this);
     this.createCategory = this.createCategory.bind(this);
+    this.createTopic = this.createTopic.bind(this);
   }
 
   toggleDisplayModalCreateCategory() {
     const { displayModalCreateCategory } = this.state;
     this.setState({ displayModalCreateCategory: !displayModalCreateCategory });
+  }
+
+  toggleDisplayModalCreateTopic() {
+    const { displayModalCreateTopic } = this.state;
+    this.setState({ displayModalCreateTopic: !displayModalCreateTopic });
     console.log('called');
   }
 
@@ -35,16 +43,32 @@ class App extends Component {
     store.addCategory(categoryName);
   }
 
+  createTopic(topicName) {
+    const { store } = this.props;
+    store.addTopic(topicName);
+  }
+
   render() {
-    const { displayModalCreateCategory } = this.state;
-    const { toggleDisplayModalCreateCategory, createCategory } = this;
+    const { displayModalCreateCategory, displayModalCreateTopic } = this.state;
+    const {
+      toggleDisplayModalCreateCategory,
+      toggleDisplayModalCreateTopic,
+      createCategory,
+      createTopic,
+    } = this;
     const { categories, topics } = this.props.store;
     return (
       <div>
         <Header />
-        <ControlButtons showModalCreateCategory={toggleDisplayModalCreateCategory} />
+        <ControlButtons
+          showModalCreateCategory={toggleDisplayModalCreateCategory}
+          showModalCreateTopic={toggleDisplayModalCreateTopic}
+        />
         {(displayModalCreateCategory) && (
           <ModalCreateCategory onCreate={createCategory} onClose={toggleDisplayModalCreateCategory} />
+        )}
+        {(displayModalCreateTopic) && (
+          <ModalCreateTopic onCreate={createTopic} onClose={toggleDisplayModalCreateTopic} />
         )}
         <Categories
           topics={topics}
