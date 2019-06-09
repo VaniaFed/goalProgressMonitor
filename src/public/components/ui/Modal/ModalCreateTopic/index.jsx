@@ -68,16 +68,33 @@ export default class ModalCreateTopic extends Component {
             />
           </label>
         </div>
+        {this.state.error && <p className={css.errorText}>{this.state.errorText}</p>}
         <button
           onClick={() => {
-            onCreate(
-              this.inputTopicName.value,
-              this.selectCategoryId.value,
-              this.inputStart.value,
-              this.inputFinish.value,
-              this.inputCurrent.value,
-            );
-            onClose();
+            if (
+              typeof this.inputTopicName.value === 'string'
+              && this.inputTopicName.value
+              && typeof this.selectCategoryId.value === 'string'
+              && this.selectCategoryId.value
+              && typeof +this.inputStart.value === 'number'
+              && this.inputStart.value >= 0
+              && typeof +this.inputFinish.value === 'number'
+              && this.inputFinish.value > 0
+              && typeof +this.inputCurrent.value === 'number'
+              && this.inputCurrent.value >= 0
+              && +this.inputStart.value < +this.inputFinish.value
+            ) {
+              onCreate(
+                this.inputTopicName.value,
+                this.selectCategoryId.value,
+                this.inputStart.value,
+                this.inputFinish.value,
+                this.inputCurrent.value,
+              );
+              onClose();
+            } else {
+              this.setState({ error: true, errorText: 'There are some empty or incorrect fields.' });
+            }
           }}
           className="defaultButton btn btn-primary"
           type="button"
