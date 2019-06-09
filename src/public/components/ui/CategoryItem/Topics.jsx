@@ -12,7 +12,7 @@ const Topics = ({ topics, onIncrease, onDecrease }) => (
           onDecrease={() => onDecrease(topic.id)}
         />
       ))
-      : <h3>It&apos;s empty here. Add some topics</h3>
+      : <p>It&apos;s empty here. Add some topics</p>
     }
   </div>
 );
