@@ -1,4 +1,9 @@
-import { observable, action, computed } from 'mobx';
+import { 
+  observable,
+  action,
+  autorun,
+  computed,
+} from 'mobx';
 import { v4 } from 'uuid';
 
 export default class GoalManagerModel {
@@ -6,10 +11,35 @@ export default class GoalManagerModel {
 
   @observable topics = [];
 
+  isFirstStart = true;
+
+  constructor() {
+    if (this.isFirstStart) {
+      const dataFromStorage = JSON.parse(localStorage.getItem('AimsAndGoals'));
+      if (dataFromStorage) {
+        this.categories = dataFromStorage.categories;
+        this.topics = dataFromStorage.topics;
+      }
+      this.isFirstStart = false;
+    }
+
+    autorun(() => {
+      this.saveEverything();
+    });
+  }
+
   getTopicsByCategoryId(categoryId) {
-    // return this.topics;
     return this.topics.filter(topic => topic.categoryId === categoryId);
   }
+
+  saveEverything() {
+    const saveObj = {
+      categories: this.categories,
+      topics: this.topics,
+    };
+    localStorage.setItem('AimsAndGoals', JSON.stringify(saveObj));
+  }
+
 
   @action addCategory(title) {
     console.log(title);

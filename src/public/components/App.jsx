@@ -13,9 +13,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     const { store } = props;
-    store.addCategory('English');
-    store.addTopic('English grammar in Use', store.categories[0].id, 0, 100, 32);
-    this.increaseCurrentValue(store.topics[0].id);
     this.state = {
       displayModalCreateCategory: false,
       displayModalCreateTopic: false,
