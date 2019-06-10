@@ -12,7 +12,6 @@ import ControlButtons from './ui/ControlButtons';
 class App extends Component {
   constructor(props) {
     super(props);
-    const { store } = props;
     this.state = {
       displayModalCreateCategory: false,
       displayModalCreateTopic: false,
@@ -53,7 +52,6 @@ class App extends Component {
     const { store } = this.props;
     const currentTopic = store.topics.filter(topic => topic.id === topicId)[0];
     store.changeTopic(topicId, { current: Number(currentTopic.current) + 1 });
-    // console.log(store.topics);
   }
 
   @action

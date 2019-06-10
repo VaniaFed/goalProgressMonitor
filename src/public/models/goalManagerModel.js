@@ -42,7 +42,6 @@ export default class GoalManagerModel {
 
 
   @action addCategory(title) {
-    console.log(title);
     this.categories.push({
       id: v4(),
       title,
