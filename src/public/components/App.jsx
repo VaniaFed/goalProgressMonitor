@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import DevTools from 'mobx-react-devtools';
+import { action, toJS } from 'mobx';
 import { observer } from 'mobx-react';
-import { action } from 'mobx';
 
 import Header from './ui/Header';
 import Categories from './container/Categories';
@@ -55,24 +54,16 @@ class App extends Component {
   @action
   increaseCurrentValue(topicId) {
     const { store } = this.props;
-    // store.increaseCurrentValue(topicId);
-    this.props.store.topics[0].current += 1;
-    console.log(store.topics);
+    const currentTopic = store.topics.filter(topic => topic.id === topicId)[0];
+    store.changeTopic(topicId, { current: Number(currentTopic.current) + 1 });
+    // console.log(store.topics);
   }
-
-  // increaseCurrentValue(topicId) {
-  //   const { store } = this.props;
-  //   const currentTopic = store.topics.filter(topic => topic.id === topicId)[0];
-  //   store.changeTopic(topicId, { current: Number(currentTopic.current) + 1 });
-  //   console.log(store.topics);
-  // }
 
   @action
   decreaseCurrentValue(topicId) {
     const { store } = this.props;
     const currentTopic = store.topics.filter(topic => topic.id === topicId)[0];
-    this.props.store.changeTopic(topicId, { current: Number(currentTopic.current) - 1 });
-    console.log(store.topics);
+    store.changeTopic(topicId, { current: Number(currentTopic.current) - 1 });
   }
 
   render() {
@@ -88,7 +79,6 @@ class App extends Component {
     const { categories, topics } = this.props.store;
     return (
       <div>
-        <DevTools />
         <Header />
         <ControlButtons
           showModalCreateCategory={toggleDisplayModalCreateCategory}

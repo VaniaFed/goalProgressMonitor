@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 import ProgressBar from './ProgressBar';
@@ -16,8 +15,6 @@ class TopicItem extends Component {
   //   // this.showControl = this.showControl.bind(this);
   //   // this.hideControl = this.hideControl.bind(this);
   // }
-
-  @observable currentPercent = '0%';
 
   // showControl() {
   //   this.setState({ displayControlTopic: true });

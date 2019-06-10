@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { v4 } from 'uuid';
 
 export default class GoalManagerModel {
@@ -6,8 +6,9 @@ export default class GoalManagerModel {
 
   @observable topics = [];
 
-  get(categoryId) {
-    return this.topics.map(topic => topic.id === categoryId);
+  getTopicsByCategoryId(categoryId) {
+    // return this.topics;
+    return this.topics.filter(topic => topic.categoryId === categoryId);
   }
 
   @action addCategory(title) {
@@ -30,17 +31,14 @@ export default class GoalManagerModel {
   }
 
   @action changeTopic(topicId, changes) {
-    this.topics = this.topics.map(topic =>
-      (topic.id === topicId)
-        ? ({
+    this.topics = this.topics.map((topic) => {
+      if (topic.id === topicId) {
+        return ({
           ...topic,
           ...changes,
-        })
-      : topic
-    );
-  }
-
-  @action increaseCurrentValue(topicId) {
-    this.topics[0].current += 1;
+        });
+      }
+      return topic;
+    })
   }
 }
