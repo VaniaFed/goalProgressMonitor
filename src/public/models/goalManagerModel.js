@@ -11,16 +11,11 @@ export default class GoalManagerModel {
 
   @observable topics = [];
 
-  isFirstStart = true;
-
   constructor() {
-    if (this.isFirstStart) {
-      const dataFromStorage = JSON.parse(localStorage.getItem('AimsAndGoals'));
-      if (dataFromStorage) {
-        this.categories = dataFromStorage.categories;
-        this.topics = dataFromStorage.topics;
-      }
-      this.isFirstStart = false;
+    const dataFromStorage = JSON.parse(localStorage.getItem('AimsAndGoals'));
+    if (dataFromStorage) {
+      this.categories = dataFromStorage.categories;
+      this.topics = dataFromStorage.topics;
     }
 
     autorun(() => {
@@ -39,7 +34,6 @@ export default class GoalManagerModel {
     };
     localStorage.setItem('AimsAndGoals', JSON.stringify(saveObj));
   }
-
 
   @action addCategory(title) {
     this.categories.push({
